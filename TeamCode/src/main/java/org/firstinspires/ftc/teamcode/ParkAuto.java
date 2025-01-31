@@ -74,7 +74,8 @@ public class ParkAuto extends RobotLinearOpMode {
 //             encoderSlideUp(0.5, 3, MOVEMENT_DIRECTION.FORWARD);
 
         while(opModeIsActive()){
-            encoderDrive(.3, 16, MOVEMENT_DIRECTION.FORWARD);
+            encoderDrive(.3, 45, MOVEMENT_DIRECTION.FORWARD);
+            sleep(30000);
             stop();
         }
     }
