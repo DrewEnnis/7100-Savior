@@ -143,7 +143,7 @@ public class Auto2 extends RobotLinearOpMode {
         leftBackDrive.setPower(x);
         rightFrontDrive.setPower(x);
         rightBackDrive.setPower(y);
-        while (opModeIsActive() && (runtime.seconds() < 2.0)) {
+        while (opModeIsActive() && (runtime.seconds() < 1.5)) {
             telemetry.addData("Path", "Leg 3: %4.1f S Elapsed", runtime.seconds());
             telemetry.update();
             // Step 5:  Stop
