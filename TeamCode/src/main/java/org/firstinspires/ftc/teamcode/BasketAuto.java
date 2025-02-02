@@ -77,7 +77,7 @@ public class BasketAuto extends RobotLinearOpMode {
             encoderDrive(.3, 16, MOVEMENT_DIRECTION.FORWARD);
             encoderDrive(.3, 4, MOVEMENT_DIRECTION.STRAFE_RIGHT);
             encoderTurn(.2, 67, TURN_DIRECTION.TURN_LEFT);
-            encoderDrive(.3, 10, MOVEMENT_DIRECTION.FORWARD);
+            encoderDrive(.3, 9, MOVEMENT_DIRECTION.FORWARD);
             armMotor.setPower(1);
             sleep(1250);
             armMotor.setPower(0);
@@ -88,9 +88,10 @@ public class BasketAuto extends RobotLinearOpMode {
             sleep(500);
             armMotor.setPower(0);
             encoderDrive(.3, 35, MOVEMENT_DIRECTION.REVERSE);
-            encoderDrive(.3, 6, MOVEMENT_DIRECTION.STRAFE_RIGHT);
-            encoderTurn(.3, 210, TURN_DIRECTION.TURN_LEFT);
-            encoderDrive(.3, 30, MOVEMENT_DIRECTION.FORWARD);
+            encoderTurn(.2, 40, TURN_DIRECTION.TURN_LEFT);
+            encoderDrive(.3, 18, MOVEMENT_DIRECTION.REVERSE);
+            encoderTurn(.3, 120, TURN_DIRECTION.TURN_LEFT);
+            encoderDrive(.3, 20, MOVEMENT_DIRECTION.FORWARD);
             armMotor.setPower(1);
             sleep(1300);
             armMotor.setPower(0);
