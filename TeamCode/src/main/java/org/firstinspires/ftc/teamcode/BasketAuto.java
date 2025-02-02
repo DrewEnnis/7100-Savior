@@ -79,10 +79,10 @@ public class BasketAuto extends RobotLinearOpMode {
             encoderTurn(.2, 67, TURN_DIRECTION.TURN_LEFT);
             encoderDrive(.3, 10, MOVEMENT_DIRECTION.FORWARD);
             armMotor.setPower(1);
-            sleep(1300);
+            sleep(1250);
             armMotor.setPower(0);
             intake.setPower(-1);
-            sleep(3000);
+            sleep(4000);
             intake.setPower(0);
             armMotor.setPower(-1);
             sleep(500);
