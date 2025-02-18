@@ -39,7 +39,8 @@ public class ParkAuto extends RobotLinearOpMode {
     public DcMotor  leftBackDriveMotor  = null; //the left back drivetrain motor
     public DcMotor  armMotor    = null; //the arm motor
     public DcMotor  VSlide   = null; //the left arm motor
-    public CRServo intake = null;
+    public CRServo intake1 = null;
+    public CRServo intake2 = null;
     private ElapsedTime     runtime = new ElapsedTime();
 
 
@@ -54,7 +55,8 @@ public class ParkAuto extends RobotLinearOpMode {
         rightBackDriveMotor  = hardwareMap.get(DcMotor.class, "right_back_drive"); //the left drivetrain motor
         armMotor  = hardwareMap.get(DcMotor.class, "arm_motor"); //the arm motor
         VSlide = hardwareMap.get(DcMotor.class, "vslide");
-        intake = hardwareMap.get(CRServo.class, "intake");
+        intake1 = hardwareMap.get(CRServo.class, "intake_1");
+        intake2 = hardwareMap.get(CRServo.class, "intake_2");
 
         leftFrontDriveMotor.setDirection(DcMotor.Direction.FORWARD);
         rightFrontDriveMotor.setDirection(DcMotor.Direction.REVERSE);
@@ -65,7 +67,8 @@ public class ParkAuto extends RobotLinearOpMode {
         leftBackDriveMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rightBackDriveMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         armMotor.setDirection(DcMotor.Direction.FORWARD);
-        intake.setDirection(CRServo.Direction.FORWARD);
+        intake1.setDirection(CRServo.Direction.FORWARD);
+        intake2.setDirection(CRServo.Direction.REVERSE);
 
         waitForStart();
 

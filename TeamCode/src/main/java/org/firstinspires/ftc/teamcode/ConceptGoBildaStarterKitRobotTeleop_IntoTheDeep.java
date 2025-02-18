@@ -74,7 +74,8 @@ public class ConceptGoBildaStarterKitRobotTeleop_IntoTheDeep extends RobotLinear
     public DcMotor  leftBackDriveMotor  = null; //the left back drivetrain motor
     public DcMotor  armMotor    = null; //the arm motor
     public DcMotor  VSlide   = null; //the left arm motor
-    public CRServo intake = null;
+    public CRServo intake1 = null;
+    public CRServo intake2 = null;
 
 
     /* This constant is the number of encoder ticks for each degree of rotation of the arm.
@@ -148,7 +149,8 @@ public class ConceptGoBildaStarterKitRobotTeleop_IntoTheDeep extends RobotLinear
         rightBackDriveMotor  = hardwareMap.get(DcMotor.class, "right_back_drive"); //the left drivetrain motor
         armMotor  = hardwareMap.get(DcMotor.class, "arm_motor"); //the arm motor
         VSlide = hardwareMap.get(DcMotor.class, "vslide");
-        intake = hardwareMap.get(CRServo.class, "intake");
+        intake1 = hardwareMap.get(CRServo.class, "intake_1");
+        intake2 = hardwareMap.get(CRServo.class, "intake_2");
 
         leftFrontDriveMotor.setDirection(DcMotor.Direction.FORWARD);
         rightFrontDriveMotor.setDirection(DcMotor.Direction.REVERSE);
@@ -159,7 +161,8 @@ public class ConceptGoBildaStarterKitRobotTeleop_IntoTheDeep extends RobotLinear
         leftBackDriveMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rightBackDriveMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         armMotor.setDirection(DcMotor.Direction.FORWARD);
-        intake.setDirection(CRServo.Direction.FORWARD);
+        intake1.setDirection(CRServo.Direction.FORWARD);
+        intake2.setDirection(CRServo.Direction.REVERSE);
 
         /* Setting zeroPowerBehavior to BRAKE enables a "brake mode". This causes the motor to slow down
         much faster when it is coasting. This creates a much more controllable drivetrain. As the robot
@@ -252,11 +255,14 @@ public class ConceptGoBildaStarterKitRobotTeleop_IntoTheDeep extends RobotLinear
 
 
             if (gamepad1.b) {
-                intake.setPower(-1);
+                intake1.setPower(-1);
+                intake2.setPower(-1);
             } else if (gamepad1.a) {
-                intake.setPower(1);
+                intake1.setPower(1);
+                intake2.setPower(1);
             } else {
-                intake.setPower(0);
+                intake1.setPower(0);
+                intake2.setPower(0);
             }
 
 
