@@ -73,7 +73,7 @@ public class ConceptGoBildaStarterKitRobotTeleop_IntoTheDeep extends RobotLinear
     public DcMotor  rightBackDriveMotor  = null; //the right back drivetrain motor
     public DcMotor  leftBackDriveMotor  = null; //the left back drivetrain motor
     public DcMotor  armMotor    = null; //the arm motor
-    public DcMotor  VSlide   = null; //the left arm motor
+//    public DcMotor  VSlide   = null; //the left arm motor
     public CRServo intake1 = null;
     public CRServo intake2 = null;
 
@@ -148,7 +148,7 @@ public class ConceptGoBildaStarterKitRobotTeleop_IntoTheDeep extends RobotLinear
         leftBackDriveMotor  = hardwareMap.get(DcMotor.class, "left_back_drive"); //the left drivetrain motor
         rightBackDriveMotor  = hardwareMap.get(DcMotor.class, "right_back_drive"); //the left drivetrain motor
         armMotor  = hardwareMap.get(DcMotor.class, "arm_motor"); //the arm motor
-        VSlide = hardwareMap.get(DcMotor.class, "vslide");
+//        VSlide = hardwareMap.get(DcMotor.class, "vslide");
         intake1 = hardwareMap.get(CRServo.class, "intake_1");
         intake2 = hardwareMap.get(CRServo.class, "intake_2");
 
@@ -161,8 +161,8 @@ public class ConceptGoBildaStarterKitRobotTeleop_IntoTheDeep extends RobotLinear
         leftBackDriveMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rightBackDriveMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         armMotor.setDirection(DcMotor.Direction.FORWARD);
-        intake1.setDirection(CRServo.Direction.FORWARD);
-        intake2.setDirection(CRServo.Direction.REVERSE);
+        intake1.setDirection(CRServo.Direction.REVERSE);
+        intake2.setDirection(CRServo.Direction.FORWARD);
 
         /* Setting zeroPowerBehavior to BRAKE enables a "brake mode". This causes the motor to slow down
         much faster when it is coasting. This creates a much more controllable drivetrain. As the robot
@@ -229,14 +229,14 @@ public class ConceptGoBildaStarterKitRobotTeleop_IntoTheDeep extends RobotLinear
             rightBackDriveMotor.setPower(RBPower/2);
             leftBackDriveMotor.setPower(LBPower/2);
 
-            armMotor.setPower(gamepad1.left_trigger-gamepad1.right_trigger);
-            if (gamepad1.left_bumper && !gamepad1.right_bumper) {
-                VSlide.setPower(1);
-            } else if (gamepad1.right_bumper && !gamepad1.left_bumper) {
-                VSlide.setPower(-1);
-            } else { // add encoder stop above else statement
-                VSlide.setPower(0);
-            }
+//            armMotor.setPower(gamepad1.left_trigger-gamepad1.right_trigger);
+//            if (gamepad1.left_bumper && !gamepad1.right_bumper) {
+//                VSlide.setPower(1);
+//            } else if (gamepad1.right_bumper && !gamepad1.left_bumper) {
+//                VSlide.setPower(-1);
+//            } else { // add encoder stop above else statement
+//                VSlide.setPower(0);
+//            }
 
 
             /* Here we handle the three buttons that have direct control of the intake speed.
