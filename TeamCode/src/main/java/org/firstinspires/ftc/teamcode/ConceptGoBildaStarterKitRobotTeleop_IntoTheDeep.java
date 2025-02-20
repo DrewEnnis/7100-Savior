@@ -229,7 +229,8 @@ public class ConceptGoBildaStarterKitRobotTeleop_IntoTheDeep extends RobotLinear
             rightBackDriveMotor.setPower(RBPower/2);
             leftBackDriveMotor.setPower(LBPower/2);
 
-//            armMotor.setPower(gamepad1.left_trigger-gamepad1.right_trigger);
+            armMotor.setPower(gamepad1.left_trigger-gamepad1.right_trigger);
+            
 //            if (gamepad1.left_bumper && !gamepad1.right_bumper) {
 //                VSlide.setPower(1);
 //            } else if (gamepad1.right_bumper && !gamepad1.left_bumper) {
