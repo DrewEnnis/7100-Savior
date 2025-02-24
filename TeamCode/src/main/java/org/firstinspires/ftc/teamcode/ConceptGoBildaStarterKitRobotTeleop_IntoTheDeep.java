@@ -148,7 +148,7 @@ public class ConceptGoBildaStarterKitRobotTeleop_IntoTheDeep extends RobotLinear
         leftBackDriveMotor  = hardwareMap.get(DcMotor.class, "left_back_drive"); //the left drivetrain motor
         rightBackDriveMotor  = hardwareMap.get(DcMotor.class, "right_back_drive"); //the left drivetrain motor
         armMotor  = hardwareMap.get(DcMotor.class, "arm_motor"); //the arm motor
-//        VSlide = hardwareMap.get(DcMotor.class, "vslide");
+        VSlide = hardwareMap.get(DcMotor.class, "vslide");
         intake1 = hardwareMap.get(CRServo.class, "intake_1");
         intake2 = hardwareMap.get(CRServo.class, "intake_2");
 
@@ -231,13 +231,13 @@ public class ConceptGoBildaStarterKitRobotTeleop_IntoTheDeep extends RobotLinear
 
             armMotor.setPower(gamepad1.left_trigger-gamepad1.right_trigger);
             
-//            if (gamepad1.left_bumper && !gamepad1.right_bumper) {
-//                VSlide.setPower(1);
-//            } else if (gamepad1.right_bumper && !gamepad1.left_bumper) {
-//                VSlide.setPower(-1);
-//            } else { // add encoder stop above else statement
-//                VSlide.setPower(0);
-//            }
+            if (gamepad1.left_bumper && !gamepad1.right_bumper) {
+                VSlide.setPower(1);
+            } else if (gamepad1.right_bumper && !gamepad1.left_bumper) {
+                VSlide.setPower(-1);
+            } else {
+                VSlide.setPower(0);
+            }
 
 
             /* Here we handle the three buttons that have direct control of the intake speed.
