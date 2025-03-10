@@ -66,6 +66,8 @@ public class ParkAuto extends RobotLinearOpMode {
         rightFrontDriveMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         leftBackDriveMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rightBackDriveMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        VSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        VSlide.setDirection(DcMotorSimple.Direction.REVERSE);
         armMotor.setDirection(DcMotor.Direction.FORWARD);
         intake1.setDirection(CRServo.Direction.FORWARD);
         intake2.setDirection(CRServo.Direction.REVERSE);

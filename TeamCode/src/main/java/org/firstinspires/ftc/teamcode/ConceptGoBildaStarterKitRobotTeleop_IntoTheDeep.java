@@ -160,9 +160,11 @@ public class ConceptGoBildaStarterKitRobotTeleop_IntoTheDeep extends RobotLinear
         rightFrontDriveMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         leftBackDriveMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rightBackDriveMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        VSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        VSlide.setDirection(DcMotorSimple.Direction.REVERSE);
         armMotor.setDirection(DcMotor.Direction.FORWARD);
-        intake1.setDirection(CRServo.Direction.REVERSE);
-        intake2.setDirection(CRServo.Direction.FORWARD);
+        intake1.setDirection(CRServo.Direction.FORWARD);
+        intake2.setDirection(CRServo.Direction.REVERSE);
 
         /* Setting zeroPowerBehavior to BRAKE enables a "brake mode". This causes the motor to slow down
         much faster when it is coasting. This creates a much more controllable drivetrain. As the robot
