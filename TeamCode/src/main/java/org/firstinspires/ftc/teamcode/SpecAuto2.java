@@ -1,13 +1,10 @@
 package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
-@Autonomous(name="Robot: backup spec", group="Robot")
-public class SpecAuto extends RobotLinearOpMode{
+@Autonomous(name="Robot: 2 Spec Auto", group="Robot")
+public class SpecAuto2 extends RobotLinearOpMode{
     public DcMotor  leftFrontDriveMotor   = null; //the left front drivetrain motor
     public DcMotor  rightFrontDriveMotor  = null; //the right front drivetrain motor
     public DcMotor  rightBackDriveMotor  = null; //the right back drivetrain motor
@@ -56,12 +53,44 @@ public class SpecAuto extends RobotLinearOpMode{
             VSlide.setPower(-.7);
             sleep(800);
             encoderDrive(.3, 4.5, MOVEMENT_DIRECTION.FORWARD);
-            VSlide.setPower(.7);
-            sleep(2600);
-            encoderDrive(.3, 30, MOVEMENT_DIRECTION.REVERSE);
-            encoderDrive(.3, 30,MOVEMENT_DIRECTION.STRAFE_RIGHT);
+            VSlide.setPower(.9);
+            sleep(1300);
+            encoderDrive(.3, 10, MOVEMENT_DIRECTION.REVERSE);
+            encoderDrive(.3, 21,MOVEMENT_DIRECTION.STRAFE_RIGHT);//was 21.5
+            encoderTurn(3,180,TURN_DIRECTION.TURN_RIGHT);
+//            encoderDrive(.3, 1.75,MOVEMENT_DIRECTION.STRAFE_LEFT);
+            sleep(3000);
+            encoderDrive(.3,20,MOVEMENT_DIRECTION.FORWARD);
+            VSlide.setPower(-.7);
+            sleep(800); //picked up specimin from wall
+
+            encoderDrive(.3,20,MOVEMENT_DIRECTION.REVERSE);
+            VSlide.setPower(.9);
+            sleep(1300);
+            encoderTurn(3,180,TURN_DIRECTION.TURN_RIGHT);
+            encoderDrive(.3, 26,MOVEMENT_DIRECTION.STRAFE_LEFT);//infront of bar
+
+            encoderDrive(.3, 30, MOVEMENT_DIRECTION.REVERSE);//reset against wall
+
+            encoderDrive(.3, 22, MOVEMENT_DIRECTION.FORWARD);
+            VSlide.setPower(-.7);
+            sleep(800);
+            encoderDrive(.3, 5.5, MOVEMENT_DIRECTION.FORWARD);
+            VSlide.setPower(.9);
+            sleep(1300);
+            encoderDrive(.3, 24, MOVEMENT_DIRECTION.REVERSE);
+
+
+
+
+
+
+
+            VSlide.setPower(0);
 
             sleep(30000);
+
+
             //encoderDrive(FORWARD_SPEED, 15, MOVEMENT_DIRECTION.FORWARD); // drive to basket
             // encoderDrive(FORWARD_SPEED, 25, MOVEMENT_DIRECTION.STRAFE_RIGHT); // strafe
 //             encoderTurn(TURN_SPEED, 45, TURN_DIRECTION.TURN_LEFT); // turn to face

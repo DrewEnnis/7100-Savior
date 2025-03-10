@@ -1,13 +1,10 @@
 package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
-@Autonomous(name="Robot: backup spec", group="Robot")
-public class SpecAuto extends RobotLinearOpMode{
+@Autonomous(name="Robot: 2 Spec Auto #2", group="Robot")
+public class SpecAuto3 extends RobotLinearOpMode{
     public DcMotor  leftFrontDriveMotor   = null; //the left front drivetrain motor
     public DcMotor  rightFrontDriveMotor  = null; //the right front drivetrain motor
     public DcMotor  rightBackDriveMotor  = null; //the right back drivetrain motor
@@ -19,8 +16,8 @@ public class SpecAuto extends RobotLinearOpMode{
     private ElapsedTime     runtime = new ElapsedTime();
 
 
-    static final double     FORWARD_SPEED = 0.6;
-    static final double     TURN_SPEED    = 0.5;
+    static final double     FW_SPEED = 0.3;
+    static final double     TURN_SPEED    = 0.3;
 
     @Override
     public void runOpMode() {
@@ -52,16 +49,52 @@ public class SpecAuto extends RobotLinearOpMode{
 //             encoderSlideUp(0.5, 3, MOVEMENT_DIRECTION.FORWARD);
 
         while (opModeIsActive()) {
-            encoderDrive(.3, 22, MOVEMENT_DIRECTION.FORWARD);
+            encoderDrive(FW_SPEED, 22, MOVEMENT_DIRECTION.FORWARD);
             VSlide.setPower(-.7);
             sleep(800);
-            encoderDrive(.3, 4.5, MOVEMENT_DIRECTION.FORWARD);
-            VSlide.setPower(.7);
-            sleep(2600);
-            encoderDrive(.3, 30, MOVEMENT_DIRECTION.REVERSE);
-            encoderDrive(.3, 30,MOVEMENT_DIRECTION.STRAFE_RIGHT);
+            encoderDrive(FW_SPEED, 4.5, MOVEMENT_DIRECTION.FORWARD);
+            VSlide.setPower(.9);
+            sleep(1300); //hooked 1st spec, can prob save time here
+
+            encoderDrive(FW_SPEED, 10, MOVEMENT_DIRECTION.REVERSE);
+            encoderDrive(FW_SPEED, 26,MOVEMENT_DIRECTION.STRAFE_RIGHT); // edited +5 to try and reset against wall (untested)
+            encoderDrive(FW_SPEED, 5,MOVEMENT_DIRECTION.STRAFE_LEFT); //move off of wall (untested)
+            encoderTurn(TURN_SPEED,180,TURN_DIRECTION.TURN_RIGHT);
+            sleep(3000);//waiting in front of human player, can save time if needed
+
+            encoderDrive(FW_SPEED,20,MOVEMENT_DIRECTION.FORWARD);
+            VSlide.setPower(-.7);
+            sleep(800); //picked up 2nd spec from wall
+
+            encoderDrive(FW_SPEED,20,MOVEMENT_DIRECTION.REVERSE);
+            VSlide.setPower(.9);
+            sleep(1300); //can prob save time here
+            encoderTurn(TURN_SPEED,180,TURN_DIRECTION.TURN_RIGHT);
+            encoderDrive(FW_SPEED, 26,MOVEMENT_DIRECTION.STRAFE_LEFT);//in front of bar
+
+            encoderDrive(FW_SPEED, 30, MOVEMENT_DIRECTION.REVERSE);//reset against wall
+
+            encoderDrive(FW_SPEED, 22, MOVEMENT_DIRECTION.FORWARD);
+            VSlide.setPower(-.7);
+            sleep(800);
+            encoderDrive(FW_SPEED, 5.5, MOVEMENT_DIRECTION.FORWARD);
+            VSlide.setPower(.9);
+            sleep(1300); //hooked 2nd spec, can prob save time here
+
+            encoderDrive(FW_SPEED, 24, MOVEMENT_DIRECTION.REVERSE);//start moving to park, runs out of time
+            encoderDrive(FW_SPEED,30,MOVEMENT_DIRECTION.STRAFE_RIGHT); //parked (untested)
+
+
+
+
+
+
+
+            VSlide.setPower(0);
 
             sleep(30000);
+
+
             //encoderDrive(FORWARD_SPEED, 15, MOVEMENT_DIRECTION.FORWARD); // drive to basket
             // encoderDrive(FORWARD_SPEED, 25, MOVEMENT_DIRECTION.STRAFE_RIGHT); // strafe
 //             encoderTurn(TURN_SPEED, 45, TURN_DIRECTION.TURN_LEFT); // turn to face
