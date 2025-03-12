@@ -125,6 +125,8 @@ public class ConceptGoBildaStarterKitRobotTeleop_IntoTheDeep extends RobotLinear
     double armPosition = (int)ARM_COLLAPSED_INTO_ROBOT;
     double armPositionFudgeFactor;
 
+    boolean blockInp = false;
+
     /*must delete one of these methods can only be one with the same name also this
     method can't be defined in another method but can be defined inside this class
      */
@@ -225,21 +227,34 @@ public class ConceptGoBildaStarterKitRobotTeleop_IntoTheDeep extends RobotLinear
 //            LFPower = rotate + (forward + strafe);
 //            RBPower = rotate + (forward - strafe);
 //            LBPower = rotate - (forward + strafe);
+            if (!blockInp) {
+                rightFrontDriveMotor.setPower(RFPower/2);
+                leftFrontDriveMotor.setPower(LFPower/2);
+                rightBackDriveMotor.setPower(RBPower/2);
+                leftBackDriveMotor.setPower(LBPower/2);
 
-            rightFrontDriveMotor.setPower(RFPower/2);
-            leftFrontDriveMotor.setPower(LFPower/2);
-            rightBackDriveMotor.setPower(RBPower/2);
-            leftBackDriveMotor.setPower(LBPower/2);
+                armMotor.setPower(gamepad1.left_trigger-gamepad1.right_trigger);
 
-            armMotor.setPower(gamepad1.left_trigger-gamepad1.right_trigger);
-            
-            if (gamepad1.left_bumper && !gamepad1.right_bumper) {
-                VSlide.setPower(1);
-            } else if (gamepad1.right_bumper && !gamepad1.left_bumper) {
-                VSlide.setPower(-1);
-            } else {
-                VSlide.setPower(0);
+                if (gamepad1.left_bumper && !gamepad1.right_bumper) {
+                    VSlide.setPower(1);
+                } else if (gamepad1.right_bumper && !gamepad1.left_bumper) {
+                    VSlide.setPower(-1);
+                } else {
+                    VSlide.setPower(0);
+                }
+
+                if (gamepad1.b) {
+                    intake1.setPower(-1);
+                    intake2.setPower(-1);
+                } else if (gamepad1.a) {
+                    intake1.setPower(1);
+                    intake2.setPower(1);
+                } else {
+                    intake1.setPower(0);
+                    intake2.setPower(0);
+                }
             }
+
 
 
             /* Here we handle the three buttons that have direct control of the intake speed.
@@ -257,16 +272,7 @@ public class ConceptGoBildaStarterKitRobotTeleop_IntoTheDeep extends RobotLinear
             one cycle. Which can cause strange behavior. */
 
 
-            if (gamepad1.b) {
-                intake1.setPower(-1);
-                intake2.setPower(-1);
-            } else if (gamepad1.a) {
-                intake1.setPower(1);
-                intake2.setPower(1);
-            } else {
-                intake1.setPower(0);
-                intake2.setPower(0);
-            }
+
 
 
 
@@ -289,30 +295,12 @@ public class ConceptGoBildaStarterKitRobotTeleop_IntoTheDeep extends RobotLinear
             it folds out the wrist to make sure it is in the correct orientation to intake, and it
             turns the intake on to the COLLECT mode.*/
 
-            if(gamepad1.right_bumper){
-                /* This is the intaking/collecting arm position */
-//                armPosition = ARM_COLLECT;
 
-//                intake.setPower(INTAKE_COLLECT);
-            }
 
-            else if (gamepad1.left_bumper){
-                    /* This is about 20° up from the collecting position to clear the barrier
-                    Note here that we don't set the wrist position or the intake power when we
-                    select this "mode", this means that the intake and wrist will continue what
-                    they were doing before we clicked left bumper. */
-//                    armPosition = ARM_CLEAR_BARRIER;
-            }
 
-            else if (gamepad1.y){
-                /* This is the correct height to score the sample in the LOW BASKET */
-//                    armPosition = ARM_SCORE_SAMPLE_IN_LOW;
-            }
 
-            else if (gamepad1.dpad_left) {
-                    /* This turns off the intake, folds in the wrist, and moves the arm
-                    back to folded inside the robot. This is also the starting configuration */
-//                    armPosition = ARM_COLLAPSED_INTO_ROBOT;
+            if (gamepad1.dpad_left) {
+
 
             }
 
@@ -323,18 +311,33 @@ public class ConceptGoBildaStarterKitRobotTeleop_IntoTheDeep extends RobotLinear
             }
 
             else if (gamepad1.dpad_up){
-                /* This sets the arm to vertical to hook onto the LOW RUNG for hanging */
-//                    armPosition = ARM_ATTACH_HANGING_HOOK;
-//                    intake.setPower(INTAKE_OFF);
-//                    intake.setPower(intake.getPower()-1);
-
+                blockInp = true;
+                encoderDrive(0.3,15,MOVEMENT_DIRECTION.FORWARD); //push into wall to center, maybe
+                encoderDrive(0.3,10,MOVEMENT_DIRECTION.REVERSE);
+                VSlide.setPower(-.7);
+                sleep(700); // changed from 800
+                encoderDrive(0.3, 4.5, MOVEMENT_DIRECTION.FORWARD);
+                VSlide.setPower(.9);
+//                sleep(700);
             }
 
             else if (gamepad1.dpad_down){
-                /* this moves the arm down to lift the robot up once it has been hooked */
-//                    armPosition = ARM_WINCH_ROBOT;
-//                    intake.setPower(INTAKE_OFF);
-//                      intake.setPower(intake.getPower()+1);
+                blockInp = true;
+                encoderDrive(0.3,15,MOVEMENT_DIRECTION.FORWARD); //push into wall to center, maybe need to raise vslide
+                encoderDrive(0.3,10,MOVEMENT_DIRECTION.REVERSE); //get ready to swing arm
+                armMotor.setPower(0.3);//arm lowered
+                sleep(800);
+                armMotor.setPower(-0.1);//raise it up to the bar as we drive forward
+                sleep(250); //might need to change timing, lets arm clear the lower bar
+                encoderDrive(0.3,5,MOVEMENT_DIRECTION.FORWARD);
+                rightFrontDriveMotor.setPower(-0.3); //drive backwards to stop from lifting submersible
+                leftFrontDriveMotor.setPower(-0.3);
+                rightBackDriveMotor.setPower(-0.3);
+                leftBackDriveMotor.setPower(-0.3);
+                while (!gamepad1.dpad_down) {
+                    armMotor.setPower(-0.5);
+                }
+                armMotor.setPower(0);
             }
 
             /* Here we set the target position of our arm to match the variable that was selected

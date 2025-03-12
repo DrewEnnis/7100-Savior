@@ -3,7 +3,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
-@Autonomous(name="Robot: 2 Spec Auto #2", group="Robot")
+@Autonomous(name="Robot: 2 Spec Auto w/ wall", group="Robot")
 public class SpecAuto3 extends RobotLinearOpMode{
     public DcMotor  leftFrontDriveMotor   = null; //the left front drivetrain motor
     public DcMotor  rightFrontDriveMotor  = null; //the right front drivetrain motor
@@ -61,7 +61,7 @@ public class SpecAuto3 extends RobotLinearOpMode{
             encoderDrive(FW_SPEED, 10, MOVEMENT_DIRECTION.REVERSE);
             encoderDrive(FW_SPEED, 30,MOVEMENT_DIRECTION.STRAFE_RIGHT); // edited +7 to try and reset against wall (untested)
             encoderDrive(FW_SPEED, 7,MOVEMENT_DIRECTION.STRAFE_LEFT); //move off of wall \
-            encoderTurn(TURN_SPEED,177.5,TURN_DIRECTION.TURN_RIGHT);
+            encoderTurn(TURN_SPEED,180,TURN_DIRECTION.TURN_RIGHT);
             sleep(1500);//waiting in front of human player, can save time if needed
 
             encoderDrive(FW_SPEED,20,MOVEMENT_DIRECTION.FORWARD);
@@ -71,7 +71,7 @@ public class SpecAuto3 extends RobotLinearOpMode{
             encoderDrive(FW_SPEED,20,MOVEMENT_DIRECTION.REVERSE);
             VSlide.setPower(.9);
             sleep(800); //can prob save time here
-            encoderTurn(TURN_SPEED,177.5,TURN_DIRECTION.TURN_RIGHT);
+            encoderTurn(TURN_SPEED,180,TURN_DIRECTION.TURN_RIGHT);
 
             encoderDrive(FW_SPEED, 10, MOVEMENT_DIRECTION.STRAFE_RIGHT);
 

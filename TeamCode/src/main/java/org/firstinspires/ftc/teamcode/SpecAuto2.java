@@ -3,7 +3,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
-@Autonomous(name="Robot: 2 Spec Auto", group="Robot")
+@Autonomous(name="Robot: 2 Spec Auto w/o wall", group="Robot")
 public class SpecAuto2 extends RobotLinearOpMode{
     public DcMotor  leftFrontDriveMotor   = null; //the left front drivetrain motor
     public DcMotor  rightFrontDriveMotor  = null; //the right front drivetrain motor
@@ -16,8 +16,8 @@ public class SpecAuto2 extends RobotLinearOpMode{
     private ElapsedTime     runtime = new ElapsedTime();
 
 
-    static final double     FORWARD_SPEED = 0.6;
-    static final double     TURN_SPEED    = 0.5;
+    static final double     FW_SPEED = 0.5;
+    static final double     TURN_SPEED    = 0.6;
 
     @Override
     public void runOpMode() {
@@ -49,36 +49,44 @@ public class SpecAuto2 extends RobotLinearOpMode{
 //             encoderSlideUp(0.5, 3, MOVEMENT_DIRECTION.FORWARD);
 
         while (opModeIsActive()) {
-            encoderDrive(.3, 22, MOVEMENT_DIRECTION.FORWARD);
+            encoderDrive(FW_SPEED,7, MOVEMENT_DIRECTION.STRAFE_LEFT);
+            encoderDrive(FW_SPEED,5,MOVEMENT_DIRECTION.REVERSE);
+            encoderDrive(FW_SPEED, 23, MOVEMENT_DIRECTION.FORWARD);
+            VSlide.setPower(-.7);
+            sleep(700); // changed from 800
+            encoderDrive(FW_SPEED, 4.5, MOVEMENT_DIRECTION.FORWARD);
+            VSlide.setPower(.9);
+            sleep(700); //hooked 1st spec, changed from 800
+
+            encoderDrive(FW_SPEED, 10, MOVEMENT_DIRECTION.REVERSE);
+            encoderDrive(FW_SPEED, 23,MOVEMENT_DIRECTION.STRAFE_RIGHT); // edited -7 to not hit the wall
+            encoderTurn(TURN_SPEED,180,TURN_DIRECTION.TURN_RIGHT);
+            sleep(1500);//waiting in front of human player, can save time if needed
+
+            encoderDrive(FW_SPEED,20,MOVEMENT_DIRECTION.FORWARD);
+            VSlide.setPower(-.7);
+            sleep(800); //picked up 2nd spec from wall
+
+            encoderDrive(FW_SPEED,20,MOVEMENT_DIRECTION.REVERSE);
+            VSlide.setPower(.9);
+            sleep(800); //can prob save time here
+            encoderTurn(TURN_SPEED,180,TURN_DIRECTION.TURN_RIGHT);
+
+//            encoderDrive(FW_SPEED, 10, MOVEMENT_DIRECTION.STRAFE_RIGHT);
+
+            encoderDrive(FW_SPEED, 24.5,MOVEMENT_DIRECTION.STRAFE_LEFT);//in front of bar, was 32
+
+            encoderDrive(FW_SPEED, 25, MOVEMENT_DIRECTION.REVERSE);//reset against back wall
+
+            encoderDrive(FW_SPEED, 23, MOVEMENT_DIRECTION.FORWARD);
             VSlide.setPower(-.7);
             sleep(800);
-            encoderDrive(.3, 4.5, MOVEMENT_DIRECTION.FORWARD);
+            encoderDrive(FW_SPEED, 4.5, MOVEMENT_DIRECTION.FORWARD);
             VSlide.setPower(.9);
-            sleep(1300);
-            encoderDrive(.3, 10, MOVEMENT_DIRECTION.REVERSE);
-            encoderDrive(.3, 21,MOVEMENT_DIRECTION.STRAFE_RIGHT);//was 21.5
-            encoderTurn(3,180,TURN_DIRECTION.TURN_RIGHT);
-//            encoderDrive(.3, 1.75,MOVEMENT_DIRECTION.STRAFE_LEFT);
-            sleep(3000);
-            encoderDrive(.3,20,MOVEMENT_DIRECTION.FORWARD);
-            VSlide.setPower(-.7);
-            sleep(800); //picked up specimin from wall
+            sleep(800); //hooked 2nd spec, can prob save time here
 
-            encoderDrive(.3,20,MOVEMENT_DIRECTION.REVERSE);
-            VSlide.setPower(.9);
-            sleep(1300);
-            encoderTurn(3,180,TURN_DIRECTION.TURN_RIGHT);
-            encoderDrive(.3, 26,MOVEMENT_DIRECTION.STRAFE_LEFT);//infront of bar
-
-            encoderDrive(.3, 30, MOVEMENT_DIRECTION.REVERSE);//reset against wall
-
-            encoderDrive(.3, 22, MOVEMENT_DIRECTION.FORWARD);
-            VSlide.setPower(-.7);
-            sleep(800);
-            encoderDrive(.3, 5.5, MOVEMENT_DIRECTION.FORWARD);
-            VSlide.setPower(.9);
-            sleep(1300);
-            encoderDrive(.3, 24, MOVEMENT_DIRECTION.REVERSE);
+            encoderDrive(FW_SPEED, 24, MOVEMENT_DIRECTION.REVERSE);
+            encoderDrive(FW_SPEED,30,MOVEMENT_DIRECTION.STRAFE_RIGHT); //parked
 
 
 

@@ -44,8 +44,8 @@ public class BasketAuto extends RobotLinearOpMode {
     private ElapsedTime     runtime = new ElapsedTime();
 
 
-    static final double     FORWARD_SPEED = 0.6;
-    static final double     TURN_SPEED    = 0.5;
+    static final double     FORWARD_SPEED = 0.3;
+    static final double     TURN_SPEED    = 0.2;
 
     @Override
     public void runOpMode() {
@@ -79,10 +79,10 @@ public class BasketAuto extends RobotLinearOpMode {
 //             encoderSlideUp(0.5, 3, MOVEMENT_DIRECTION.FORWARD);
 
         while(opModeIsActive()){
-            encoderDrive(.3, 16, MOVEMENT_DIRECTION.FORWARD);
-            encoderDrive(.3, 4, MOVEMENT_DIRECTION.STRAFE_RIGHT);
-            encoderTurn(.2, 67, TURN_DIRECTION.TURN_LEFT);
-            encoderDrive(.3, 9, MOVEMENT_DIRECTION.FORWARD);
+            encoderDrive(FORWARD_SPEED, 16, MOVEMENT_DIRECTION.FORWARD);
+            encoderDrive(FORWARD_SPEED, 4, MOVEMENT_DIRECTION.STRAFE_RIGHT);
+            encoderTurn(TURN_SPEED, 67, TURN_DIRECTION.TURN_LEFT);
+            encoderDrive(FORWARD_SPEED, 9, MOVEMENT_DIRECTION.FORWARD);
             armMotor.setPower(1);
             sleep(1250);
             armMotor.setPower(0);
@@ -94,11 +94,11 @@ public class BasketAuto extends RobotLinearOpMode {
             armMotor.setPower(-1);
             sleep(500);
             armMotor.setPower(0);
-            encoderDrive(.3, 35, MOVEMENT_DIRECTION.REVERSE);
-            encoderTurn(.2, 40, TURN_DIRECTION.TURN_LEFT);
-            encoderDrive(.3, 18, MOVEMENT_DIRECTION.REVERSE);
-            encoderTurn(.3, 120, TURN_DIRECTION.TURN_LEFT);
-            encoderDrive(.3, 20, MOVEMENT_DIRECTION.FORWARD);
+            encoderDrive(FORWARD_SPEED, 35, MOVEMENT_DIRECTION.REVERSE);
+            encoderTurn(TURN_SPEED, 40, TURN_DIRECTION.TURN_LEFT);
+            encoderDrive(FORWARD_SPEED, 18, MOVEMENT_DIRECTION.REVERSE);
+            encoderTurn(TURN_SPEED, 120, TURN_DIRECTION.TURN_LEFT);
+            encoderDrive(FORWARD_SPEED, 20, MOVEMENT_DIRECTION.FORWARD);
             armMotor.setPower(1);
             sleep(1300);
             armMotor.setPower(0);
