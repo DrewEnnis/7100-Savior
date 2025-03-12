@@ -3,8 +3,8 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
-@Autonomous(name="Robot: 2 Spec Auto w/o wall", group="Robot")
-public class SpecAuto2 extends RobotLinearOpMode{
+@Autonomous(name="Robot: Spec Auto w/o wall", group="Robot")
+public class SpecAutoNoWall extends RobotLinearOpMode{
     public DcMotor  leftFrontDriveMotor   = null; //the left front drivetrain motor
     public DcMotor  rightFrontDriveMotor  = null; //the right front drivetrain motor
     public DcMotor  rightBackDriveMotor  = null; //the right back drivetrain motor
@@ -51,7 +51,7 @@ public class SpecAuto2 extends RobotLinearOpMode{
         while (opModeIsActive()) {
             encoderDrive(FW_SPEED,7, MOVEMENT_DIRECTION.STRAFE_LEFT);
             encoderDrive(FW_SPEED,5,MOVEMENT_DIRECTION.REVERSE);
-            encoderDrive(FW_SPEED, 23, MOVEMENT_DIRECTION.FORWARD);
+            encoderDrive(FW_SPEED, 22, MOVEMENT_DIRECTION.FORWARD);
             VSlide.setPower(-.7);
             sleep(700); // changed from 800
             encoderDrive(FW_SPEED, 4.5, MOVEMENT_DIRECTION.FORWARD);
@@ -59,7 +59,7 @@ public class SpecAuto2 extends RobotLinearOpMode{
             sleep(700); //hooked 1st spec, changed from 800
 
             encoderDrive(FW_SPEED, 10, MOVEMENT_DIRECTION.REVERSE);
-            encoderDrive(FW_SPEED, 23,MOVEMENT_DIRECTION.STRAFE_RIGHT); // edited -7 to not hit the wall
+            encoderDrive(FW_SPEED, 23,MOVEMENT_DIRECTION.STRAFE_RIGHT); // edited -7 to try and reset against wall (untested)
             encoderTurn(TURN_SPEED,180,TURN_DIRECTION.TURN_RIGHT);
             sleep(1500);//waiting in front of human player, can save time if needed
 
@@ -72,13 +72,13 @@ public class SpecAuto2 extends RobotLinearOpMode{
             sleep(800); //can prob save time here
             encoderTurn(TURN_SPEED,180,TURN_DIRECTION.TURN_RIGHT);
 
-//            encoderDrive(FW_SPEED, 10, MOVEMENT_DIRECTION.STRAFE_RIGHT);
+//            encoderDrive(FW_SPEED, 10, MOVEMENT_DIRECTION.STRAFE_RIGHT); remove reset
 
             encoderDrive(FW_SPEED, 24.5,MOVEMENT_DIRECTION.STRAFE_LEFT);//in front of bar, was 32
 
-            encoderDrive(FW_SPEED, 25, MOVEMENT_DIRECTION.REVERSE);//reset against back wall
+            encoderDrive(FW_SPEED, 25, MOVEMENT_DIRECTION.REVERSE);//reset against wall
 
-            encoderDrive(FW_SPEED, 23, MOVEMENT_DIRECTION.FORWARD);
+            encoderDrive(FW_SPEED, 22, MOVEMENT_DIRECTION.FORWARD);
             VSlide.setPower(-.7);
             sleep(800);
             encoderDrive(FW_SPEED, 4.5, MOVEMENT_DIRECTION.FORWARD);

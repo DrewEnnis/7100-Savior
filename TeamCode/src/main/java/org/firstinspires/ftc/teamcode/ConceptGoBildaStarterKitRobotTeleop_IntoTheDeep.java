@@ -312,32 +312,46 @@ public class ConceptGoBildaStarterKitRobotTeleop_IntoTheDeep extends RobotLinear
 
             else if (gamepad1.dpad_up){
                 blockInp = true;
-                encoderDrive(0.3,15,MOVEMENT_DIRECTION.FORWARD); //push into wall to center, maybe
-                encoderDrive(0.3,10,MOVEMENT_DIRECTION.REVERSE);
-                VSlide.setPower(-.7);
+                VSlide.setPower(.7);
+                sleep(350);
+                VSlide.setPower(0);
+                encoderDrive(0.3,25,MOVEMENT_DIRECTION.FORWARD); //push into wall to center, maybe
+                encoderDrive(0.3,5,MOVEMENT_DIRECTION.REVERSE);
+                VSlide.setPower(.7);
                 sleep(700); // changed from 800
-                encoderDrive(0.3, 4.5, MOVEMENT_DIRECTION.FORWARD);
-                VSlide.setPower(.9);
-//                sleep(700);
+                encoderDrive(0.3, 3.25, MOVEMENT_DIRECTION.FORWARD);
+                VSlide.setPower(-.9);
+                sleep(900);
+                VSlide.setPower(0);
+                blockInp = false;
             }
 
             else if (gamepad1.dpad_down){
                 blockInp = true;
                 encoderDrive(0.3,15,MOVEMENT_DIRECTION.FORWARD); //push into wall to center, maybe need to raise vslide
-                encoderDrive(0.3,10,MOVEMENT_DIRECTION.REVERSE); //get ready to swing arm
-                armMotor.setPower(0.3);//arm lowered
-                sleep(800);
-                armMotor.setPower(-0.1);//raise it up to the bar as we drive forward
-                sleep(250); //might need to change timing, lets arm clear the lower bar
-                encoderDrive(0.3,5,MOVEMENT_DIRECTION.FORWARD);
-                rightFrontDriveMotor.setPower(-0.3); //drive backwards to stop from lifting submersible
-                leftFrontDriveMotor.setPower(-0.3);
-                rightBackDriveMotor.setPower(-0.3);
-                leftBackDriveMotor.setPower(-0.3);
-                while (!gamepad1.dpad_down) {
-                    armMotor.setPower(-0.5);
-                }
+                encoderDrive(0.3,12,MOVEMENT_DIRECTION.REVERSE); //get ready to swing arm
+                armMotor.setPower(0.8);//arm lowered
+                sleep(2100);
+                armMotor.setPower(-0.5);//raise it up to the bar as we drive forward
+//                sleep(250); //might need to change timing, lets arm clear the lower bar
+                encoderDrive(0.4,10,MOVEMENT_DIRECTION.FORWARD);
                 armMotor.setPower(0);
+                rightFrontDriveMotor.setPower(0.3); //drive backwards to stop from lifting submersible
+                leftFrontDriveMotor.setPower(0.3);
+                rightBackDriveMotor.setPower(0.3);
+                leftBackDriveMotor.setPower(0.3);
+                sleep(200);
+                armMotor.setPower(-1);
+                sleep(2000);
+                rightFrontDriveMotor.setPower(0); //drive backwards to stop from lifting submersible
+                leftFrontDriveMotor.setPower(0);
+                rightBackDriveMotor.setPower(0);
+                leftBackDriveMotor.setPower(0);
+//                while (!gamepad1.dpad_down) {
+//                    armMotor.setPower(-0.5);
+//                }
+//                armMotor.setPower(0);
+//                blockInp=false;
             }
 
             /* Here we set the target position of our arm to match the variable that was selected

@@ -51,7 +51,7 @@ public class SpecAuto3 extends RobotLinearOpMode{
         while (opModeIsActive()) {
             encoderDrive(FW_SPEED,7, MOVEMENT_DIRECTION.STRAFE_LEFT);
             encoderDrive(FW_SPEED,5,MOVEMENT_DIRECTION.REVERSE);
-            encoderDrive(FW_SPEED, 23, MOVEMENT_DIRECTION.FORWARD);
+            encoderDrive(FW_SPEED, 22, MOVEMENT_DIRECTION.FORWARD);
             VSlide.setPower(-.7);
             sleep(700); // changed from 800
             encoderDrive(FW_SPEED, 4.5, MOVEMENT_DIRECTION.FORWARD);
@@ -79,7 +79,7 @@ public class SpecAuto3 extends RobotLinearOpMode{
 
             encoderDrive(FW_SPEED, 25, MOVEMENT_DIRECTION.REVERSE);//reset against wall
 
-            encoderDrive(FW_SPEED, 23, MOVEMENT_DIRECTION.FORWARD);
+            encoderDrive(FW_SPEED, 22, MOVEMENT_DIRECTION.FORWARD);
             VSlide.setPower(-.7);
             sleep(800);
             encoderDrive(FW_SPEED, 4.5, MOVEMENT_DIRECTION.FORWARD);

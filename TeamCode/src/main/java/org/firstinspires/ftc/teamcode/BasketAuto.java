@@ -45,7 +45,7 @@ public class BasketAuto extends RobotLinearOpMode {
 
 
     static final double     FORWARD_SPEED = 0.3;
-    static final double     TURN_SPEED    = 0.2;
+    static final double     TURN_SPEED    = 0.4;
 
     @Override
     public void runOpMode() {
@@ -79,29 +79,35 @@ public class BasketAuto extends RobotLinearOpMode {
 //             encoderSlideUp(0.5, 3, MOVEMENT_DIRECTION.FORWARD);
 
         while(opModeIsActive()){
-            encoderDrive(FORWARD_SPEED, 16, MOVEMENT_DIRECTION.FORWARD);
-            encoderDrive(FORWARD_SPEED, 4, MOVEMENT_DIRECTION.STRAFE_RIGHT);
-            encoderTurn(TURN_SPEED, 67, TURN_DIRECTION.TURN_LEFT);
-            encoderDrive(FORWARD_SPEED, 9, MOVEMENT_DIRECTION.FORWARD);
-            armMotor.setPower(1);
-            sleep(1250);
+            encoderDrive(FORWARD_SPEED, 16, MOVEMENT_DIRECTION.REVERSE);
+            encoderDrive(FORWARD_SPEED, 4, MOVEMENT_DIRECTION.STRAFE_LEFT);
+            encoderTurn(TURN_SPEED, 45, TURN_DIRECTION.TURN_LEFT);
+            encoderDrive(FORWARD_SPEED, 2, MOVEMENT_DIRECTION.FORWARD);
+            armMotor.setPower(0.6);
+            sleep(1500);
             armMotor.setPower(0);
-            intake1.setPower(-1);
-            intake2.setPower(1);
-            sleep(4000);
-            intake1.setPower(0);
-            intake2.setPower(0);
-            armMotor.setPower(-1);
+//            encoderDrive(FORWARD_SPEED, 2, MOVEMENT_DIRECTION.FORWARD);
+            encoderDrive(FORWARD_SPEED, 10, MOVEMENT_DIRECTION.REVERSE);
+            armMotor.setPower(-0.6);
             sleep(500);
             armMotor.setPower(0);
-            encoderDrive(FORWARD_SPEED, 35, MOVEMENT_DIRECTION.REVERSE);
-            encoderTurn(TURN_SPEED, 40, TURN_DIRECTION.TURN_LEFT);
-            encoderDrive(FORWARD_SPEED, 18, MOVEMENT_DIRECTION.REVERSE);
-            encoderTurn(TURN_SPEED, 120, TURN_DIRECTION.TURN_LEFT);
-            encoderDrive(FORWARD_SPEED, 20, MOVEMENT_DIRECTION.FORWARD);
-            armMotor.setPower(1);
-            sleep(1300);
+            intake1.setPower(-1);
+            intake2.setPower(-1);
+            sleep(1800);
+            intake1.setPower(0);
+            intake2.setPower(0);
+            encoderDrive(FORWARD_SPEED,3,MOVEMENT_DIRECTION.REVERSE);
+            armMotor.setPower(-0.6);
+            sleep(500);
             armMotor.setPower(0);
+            encoderDrive(FORWARD_SPEED, 17, MOVEMENT_DIRECTION.FORWARD); //-3 because of reverse above
+            encoderTurn(TURN_SPEED, 45, TURN_DIRECTION.TURN_LEFT);
+//            encoderDrive(FORWARD_SPEED, 18, MOVEMENT_DIRECTION.REVERSE);
+//            encoderTurn(TURN_SPEED, 120, TURN_DIRECTION.TURN_LEFT);
+//            encoderDrive(FORWARD_SPEED, 20, MOVEMENT_DIRECTION.FORWARD);
+//            armMotor.setPower(1);
+//            sleep(1300);
+//            armMotor.setPower(0);
 
             sleep(30000);
             //encoderDrive(FORWARD_SPEED, 15, MOVEMENT_DIRECTION.FORWARD); // drive to basket
