@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 @Autonomous(name="Robot: 2 Spec Auto w/ wall", group="Robot")
 public class SpecAuto3 extends RobotLinearOpMode{
@@ -41,6 +42,7 @@ public class SpecAuto3 extends RobotLinearOpMode{
         armMotor.setDirection(DcMotor.Direction.FORWARD);
         intake1.setDirection(CRServo.Direction.FORWARD);
         intake2.setDirection(CRServo.Direction.REVERSE);
+        VSlide.setDirection(DcMotorSimple.Direction.REVERSE);
 
         waitForStart();
 
@@ -49,42 +51,57 @@ public class SpecAuto3 extends RobotLinearOpMode{
 //             encoderSlideUp(0.5, 3, MOVEMENT_DIRECTION.FORWARD);
 
         while (opModeIsActive()) {
-            encoderDrive(FW_SPEED,7, MOVEMENT_DIRECTION.STRAFE_LEFT);
-            encoderDrive(FW_SPEED,5,MOVEMENT_DIRECTION.REVERSE);
+            encoderDrive(FW_SPEED,6.5, MOVEMENT_DIRECTION.STRAFE_LEFT);
+//            encoderDrive(FW_SPEED,5,MOVEMENT_DIRECTION.REVERSE);
             encoderDrive(FW_SPEED, 22, MOVEMENT_DIRECTION.FORWARD);
-            VSlide.setPower(-.7);
+            VSlide.setPower(.7);
+            sleep(400); // was 350
+            VSlide.setPower(0);
+            encoderDrive(0.3,12.5,MOVEMENT_DIRECTION.FORWARD); //push into wall to center
+            encoderDrive(0.3,5,MOVEMENT_DIRECTION.REVERSE);
+            VSlide.setPower(.7);
             sleep(700); // changed from 800
-            encoderDrive(FW_SPEED, 4.5, MOVEMENT_DIRECTION.FORWARD);
-            VSlide.setPower(.9);
-            sleep(700); //hooked 1st spec, changed from 800
+            encoderDrive(0.3, 3.25, MOVEMENT_DIRECTION.FORWARD);
+            VSlide.setPower(-.9);//hooked 1st spec, changed from 800
+            sleep(200);
+
 
             encoderDrive(FW_SPEED, 10, MOVEMENT_DIRECTION.REVERSE);
-            encoderDrive(FW_SPEED, 30,MOVEMENT_DIRECTION.STRAFE_RIGHT); // edited +7 to try and reset against wall (untested)
-            encoderDrive(FW_SPEED, 7,MOVEMENT_DIRECTION.STRAFE_LEFT); //move off of wall \
+            VSlide.setPower(0);
+            encoderDrive(FW_SPEED, 23,MOVEMENT_DIRECTION.STRAFE_RIGHT);
+            encoderDrive(0.3, 7,MOVEMENT_DIRECTION.STRAFE_RIGHT); //soften wall hit
+            encoderDrive(FW_SPEED, 7,MOVEMENT_DIRECTION.STRAFE_LEFT); //move off of wall
             encoderTurn(TURN_SPEED,180,TURN_DIRECTION.TURN_RIGHT);
             sleep(1500);//waiting in front of human player, can save time if needed
 
             encoderDrive(FW_SPEED,20,MOVEMENT_DIRECTION.FORWARD);
-            VSlide.setPower(-.7);
-            sleep(800); //picked up 2nd spec from wall
+            VSlide.setPower(.7);
+            sleep(200); //picked up 2nd spec from wall, was 400
 
             encoderDrive(FW_SPEED,20,MOVEMENT_DIRECTION.REVERSE);
-            VSlide.setPower(.9);
-            sleep(800); //can prob save time here
+            VSlide.setPower(-.9);
+//            sleep(800); //can prob save time here
             encoderTurn(TURN_SPEED,180,TURN_DIRECTION.TURN_RIGHT);
+            VSlide.setPower(0);
 
-            encoderDrive(FW_SPEED, 10, MOVEMENT_DIRECTION.STRAFE_RIGHT);
+//            encoderDrive(FW_SPEED, 10, MOVEMENT_DIRECTION.STRAFE_RIGHT);
 
-            encoderDrive(FW_SPEED, 32,MOVEMENT_DIRECTION.STRAFE_LEFT);//in front of bar, was 24.5
+            encoderDrive(FW_SPEED, 22.5,MOVEMENT_DIRECTION.STRAFE_LEFT);//in front of bar, was 32
 
-            encoderDrive(FW_SPEED, 25, MOVEMENT_DIRECTION.REVERSE);//reset against wall
+//            encoderDrive(FW_SPEED, 25, MOVEMENT_DIRECTION.REVERSE);//reset against wall
 
-            encoderDrive(FW_SPEED, 22, MOVEMENT_DIRECTION.FORWARD);
-            VSlide.setPower(-.7);
-            sleep(800);
-            encoderDrive(FW_SPEED, 4.5, MOVEMENT_DIRECTION.FORWARD);
-            VSlide.setPower(.9);
-            sleep(800); //hooked 2nd spec, can prob save time here
+//            encoderDrive(FW_SPEED, 18, MOVEMENT_DIRECTION.FORWARD);//was 22
+            VSlide.setPower(.7);
+            sleep(400); //was 350
+            VSlide.setPower(0);
+            encoderDrive(FW_SPEED,17.5,MOVEMENT_DIRECTION.FORWARD); //push into wall to center, maybe
+            encoderDrive(FW_SPEED,5,MOVEMENT_DIRECTION.REVERSE);
+            VSlide.setPower(.7);
+            sleep(700); // changed from 800
+            encoderDrive(0.3, 3.25, MOVEMENT_DIRECTION.FORWARD);
+            VSlide.setPower(-.9);
+            sleep(900);
+            VSlide.setPower(0); //hooked 2nd spec, can prob save time here
 
             encoderDrive(FW_SPEED, 24, MOVEMENT_DIRECTION.REVERSE);
             encoderDrive(FW_SPEED,30,MOVEMENT_DIRECTION.STRAFE_RIGHT); //parked
