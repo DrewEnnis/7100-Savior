@@ -44,7 +44,7 @@ public class BasketAuto extends RobotLinearOpMode {
     private ElapsedTime     runtime = new ElapsedTime();
 
 
-    static final double     FORWARD_SPEED = 0.3;
+    static final double     FORWARD_SPEED = 0.5;
     static final double     TURN_SPEED    = 0.4;
 
     @Override
@@ -90,8 +90,8 @@ public class BasketAuto extends RobotLinearOpMode {
             encoderDrive(FORWARD_SPEED, 10, MOVEMENT_DIRECTION.REVERSE);
             armMotor.setPower(-0.5);
             sleep(500);
-            armMotor.setPower(0.15);
-            sleep(250);
+            armMotor.setPower(0.25);
+            sleep(300); //was 250
             armMotor.setPower(0);
             intake1.setPower(1);
             intake2.setPower(1);
@@ -102,25 +102,60 @@ public class BasketAuto extends RobotLinearOpMode {
             armMotor.setPower(-0.6);
             sleep(500);
             armMotor.setPower(0);
-            encoderDrive(FORWARD_SPEED, 14, MOVEMENT_DIRECTION.FORWARD); //-6 because of forward above
+            encoderDrive(FORWARD_SPEED, 4, MOVEMENT_DIRECTION.FORWARD);
             encoderTurn(TURN_SPEED, 45, TURN_DIRECTION.TURN_LEFT);
 
-            encoderDrive(FORWARD_SPEED,2,MOVEMENT_DIRECTION.STRAFE_LEFT);
-            encoderDrive(FORWARD_SPEED,1.5,MOVEMENT_DIRECTION.REVERSE);
-            armMotor.setPower(0.8);
-            sleep(2500);
+//            encoderDrive(FORWARD_SPEED, 15, MOVEMENT_DIRECTION.REVERSE);
+//            encoderDrive(FORWARD_SPEED,1,MOVEMENT_DIRECTION.STRAFE_RIGHT);
+            encoderDrive(FORWARD_SPEED,8,MOVEMENT_DIRECTION.FORWARD);
+            encoderDrive(0.3,9,MOVEMENT_DIRECTION.STRAFE_LEFT);
+            encoderDrive(0.3,2.75,MOVEMENT_DIRECTION.STRAFE_RIGHT);
+
+//            encoderDrive(FORWARD_SPEED,1.5,MOVEMENT_DIRECTION.REVERSE);
+            armMotor.setPower(1);
+            sleep(2200);
             armMotor.setPower(0);
-            intake1.setPower(1);
-            intake2.setPower(1);
-            sleep(200); //Picked up sample
+            sleep(250);
+            intake1.setPower(-1);
+            intake2.setPower(-1);
+            sleep(250); //Picked up sample
             intake1.setPower(0);
             intake2.setPower(0);
 
             armMotor.setPower(-0.6);
 //            sleep(1250);
-            encoderTurn(TURN_SPEED,45,TURN_DIRECTION.TURN_RIGHT);
-            encoderDrive(FORWARD_SPEED,10,MOVEMENT_DIRECTION.REVERSE);
+            encoderDrive(FORWARD_SPEED, 2,MOVEMENT_DIRECTION.STRAFE_RIGHT);
+            encoderDrive(FORWARD_SPEED,7,MOVEMENT_DIRECTION.REVERSE);
+            encoderTurn(TURN_SPEED,135,TURN_DIRECTION.TURN_LEFT);
             armMotor.setPower(0);
+            encoderDrive(FORWARD_SPEED,2,MOVEMENT_DIRECTION.STRAFE_LEFT);
+            armMotor.setPower(0.7);
+            encoderDrive(FORWARD_SPEED,7,MOVEMENT_DIRECTION.FORWARD);
+            encoderDrive(FORWARD_SPEED,2.5,MOVEMENT_DIRECTION.REVERSE);
+//            armMotor.setPower(0.5);
+            sleep(400);
+            armMotor.setPower(-0.15);
+            sleep(300);//was 250
+            armMotor.setPower(0);
+            intake1.setPower(1);
+            intake2.setPower(1);
+            sleep(500);
+            intake1.setPower(0);
+            intake2.setPower(0);
+
+            encoderDrive(FORWARD_SPEED,22,MOVEMENT_DIRECTION.REVERSE);
+            encoderTurn(TURN_SPEED,45,TURN_DIRECTION.TURN_LEFT);
+            encoderDrive(FORWARD_SPEED,20,MOVEMENT_DIRECTION.REVERSE);
+            encoderTurn(TURN_SPEED,90,TURN_DIRECTION.TURN_LEFT);
+            encoderDrive(FORWARD_SPEED,3,MOVEMENT_DIRECTION.STRAFE_LEFT);
+            encoderDrive(FORWARD_SPEED,13,MOVEMENT_DIRECTION.FORWARD);
+            armMotor.setPower(0.3);
+            sleep(300);
+            armMotor.setPower(0);
+
+
+
+
 
 //            encoderDrive(FORWARD_SPEED, 18, MOVEMENT_DIRECTION.REVERSE);
 //            encoderTurn(TURN_SPEED, 120, TURN_DIRECTION.TURN_LEFT);
