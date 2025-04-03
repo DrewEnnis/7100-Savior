@@ -75,7 +75,8 @@ public class ConceptGoBildaStarterKitRobotTeleop_IntoTheDeep extends RobotLinear
     public DcMotor  armMotor    = null; //the arm motor
 //    public DcMotor  VSlide   = null; //the left arm motor
     public CRServo intake1 = null;
-    public CRServo intake2 = null;
+//    public CRServo intake2 = null;
+    public DcMotor chicken = null;
 
 
     /* This constant is the number of encoder ticks for each degree of rotation of the arm.
@@ -152,7 +153,8 @@ public class ConceptGoBildaStarterKitRobotTeleop_IntoTheDeep extends RobotLinear
         armMotor  = hardwareMap.get(DcMotor.class, "arm_motor"); //the arm motor
         VSlide = hardwareMap.get(DcMotor.class, "vslide");
         intake1 = hardwareMap.get(CRServo.class, "intake_1");
-        intake2 = hardwareMap.get(CRServo.class, "intake_2");
+//        intake2 = hardwareMap.get(CRServo.class, "intake_2");
+        chicken = hardwareMap.get(DcMotor.class, "chicken");
 
         leftFrontDriveMotor.setDirection(DcMotor.Direction.FORWARD);
         rightFrontDriveMotor.setDirection(DcMotor.Direction.REVERSE);
@@ -166,7 +168,7 @@ public class ConceptGoBildaStarterKitRobotTeleop_IntoTheDeep extends RobotLinear
         VSlide.setDirection(DcMotorSimple.Direction.REVERSE);
         armMotor.setDirection(DcMotor.Direction.FORWARD);
         intake1.setDirection(CRServo.Direction.FORWARD);
-        intake2.setDirection(CRServo.Direction.REVERSE);
+//        intake2.setDirection(CRServo.Direction.REVERSE);
 
         /* Setting zeroPowerBehavior to BRAKE enables a "brake mode". This causes the motor to slow down
         much faster when it is coasting. This creates a much more controllable drivetrain. As the robot
@@ -233,7 +235,7 @@ public class ConceptGoBildaStarterKitRobotTeleop_IntoTheDeep extends RobotLinear
                 rightBackDriveMotor.setPower(RBPower/2);
                 leftBackDriveMotor.setPower(LBPower/2);
 
-                armMotor.setPower(gamepad1.left_trigger-gamepad1.right_trigger);
+                chicken.setPower(gamepad1.left_trigger-gamepad1.right_trigger);
 
                 if (gamepad1.left_bumper && !gamepad1.right_bumper) {
                     VSlide.setPower(1);
@@ -245,13 +247,13 @@ public class ConceptGoBildaStarterKitRobotTeleop_IntoTheDeep extends RobotLinear
 
                 if (gamepad1.b) {
                     intake1.setPower(-1);
-                    intake2.setPower(-1);
+//                    intake2.setPower(-1);
                 } else if (gamepad1.a) {
                     intake1.setPower(1);
-                    intake2.setPower(1);
+//                    intake2.setPower(1);
                 } else {
                     intake1.setPower(0);
-                    intake2.setPower(0);
+//                    intake2.setPower(0);
                 }
             }
 
