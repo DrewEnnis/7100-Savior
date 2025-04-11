@@ -72,11 +72,11 @@ public class ConceptGoBildaStarterKitRobotTeleop_IntoTheDeep extends RobotLinear
     public DcMotor  rightFrontDriveMotor  = null; //the right front drivetrain motor
     public DcMotor  rightBackDriveMotor  = null; //the right back drivetrain motor
     public DcMotor  leftBackDriveMotor  = null; //the left back drivetrain motor
-    public DcMotor  armMotor    = null; //the arm motor
+//    public DcMotor  armMotor    = null; //the arm motor
 //    public DcMotor  VSlide   = null; //the left arm motor
     public CRServo intake1 = null;
 //    public CRServo intake2 = null;
-    public DcMotor chicken = null;
+//    public DcMotor chicken = null;
 
 
     /* This constant is the number of encoder ticks for each degree of rotation of the arm.
@@ -150,11 +150,11 @@ public class ConceptGoBildaStarterKitRobotTeleop_IntoTheDeep extends RobotLinear
         rightFrontDriveMotor = hardwareMap.get(DcMotor.class, "right_front_drive"); //the right front drivetrain motor
         leftBackDriveMotor  = hardwareMap.get(DcMotor.class, "left_back_drive"); //the left drivetrain motor
         rightBackDriveMotor  = hardwareMap.get(DcMotor.class, "right_back_drive"); //the left drivetrain motor
-        armMotor  = hardwareMap.get(DcMotor.class, "arm_motor"); //the arm motor
+//        armMotor  = hardwareMap.get(DcMotor.class, "arm_motor"); //the arm motor
         VSlide = hardwareMap.get(DcMotor.class, "vslide");
-        intake1 = hardwareMap.get(CRServo.class, "intake_1");
+        intake1 = hardwareMap.get(CRServo.class, "intake");
 //        intake2 = hardwareMap.get(CRServo.class, "intake_2");
-        chicken = hardwareMap.get(DcMotor.class, "chicken");
+//        chicken = hardwareMap.get(DcMotor.class, "chicken");
 
         leftFrontDriveMotor.setDirection(DcMotor.Direction.FORWARD);
         rightFrontDriveMotor.setDirection(DcMotor.Direction.REVERSE);
@@ -166,7 +166,7 @@ public class ConceptGoBildaStarterKitRobotTeleop_IntoTheDeep extends RobotLinear
         rightBackDriveMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         VSlide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         VSlide.setDirection(DcMotorSimple.Direction.REVERSE);
-        armMotor.setDirection(DcMotor.Direction.FORWARD);
+//        armMotor.setDirection(DcMotor.Direction.FORWARD);
         intake1.setDirection(CRServo.Direction.FORWARD);
 //        intake2.setDirection(CRServo.Direction.REVERSE);
 
@@ -235,15 +235,15 @@ public class ConceptGoBildaStarterKitRobotTeleop_IntoTheDeep extends RobotLinear
                 rightBackDriveMotor.setPower(RBPower/2);
                 leftBackDriveMotor.setPower(LBPower/2);
 
-                chicken.setPower(gamepad1.left_trigger-gamepad1.right_trigger);
+                VSlide.setPower(gamepad1.left_trigger-gamepad1.right_trigger);
 
-                if (gamepad1.left_bumper && !gamepad1.right_bumper) {
-                    VSlide.setPower(1);
-                } else if (gamepad1.right_bumper && !gamepad1.left_bumper) {
-                    VSlide.setPower(-1);
-                } else {
-                    VSlide.setPower(0);
-                }
+//                if (gamepad1.left_bumper && !gamepad1.right_bumper) {
+//                    VSlide.setPower(1);
+//                } else if (gamepad1.right_bumper && !gamepad1.left_bumper) {
+//                    VSlide.setPower(-1);
+//                } else {
+//                    VSlide.setPower(0);
+//                }
 
                 if (gamepad1.b) {
                     intake1.setPower(-1);
@@ -312,49 +312,49 @@ public class ConceptGoBildaStarterKitRobotTeleop_IntoTheDeep extends RobotLinear
 
             }
 
-            else if (gamepad1.dpad_up){
-                blockInp = true;
-                VSlide.setPower(.7);
-                sleep(350);
-                VSlide.setPower(0);
-                encoderDrive(0.3,25,MOVEMENT_DIRECTION.FORWARD); //push into wall to center, maybe
-                encoderDrive(0.3,5,MOVEMENT_DIRECTION.REVERSE);
-                VSlide.setPower(.7);
-                sleep(700); // changed from 800
-                encoderDrive(0.3, 3.25, MOVEMENT_DIRECTION.FORWARD);
-                VSlide.setPower(-.9);
-                sleep(900);
-                VSlide.setPower(0);
-                blockInp = false;
-            }
-
-            else if (gamepad1.dpad_down){
-                blockInp = true;
-                encoderDrive(0.3,15,MOVEMENT_DIRECTION.FORWARD); //push into wall to center, maybe need to raise vslide
-                encoderDrive(0.3,12,MOVEMENT_DIRECTION.REVERSE); //get ready to swing arm
-                armMotor.setPower(0.8);//arm lowered
-                sleep(2100);
-                armMotor.setPower(-0.5);//raise it up to the bar as we drive forward
-//                sleep(250); //might need to change timing, lets arm clear the lower bar
-                encoderDrive(0.4,10,MOVEMENT_DIRECTION.FORWARD);
-                armMotor.setPower(0);
-                rightFrontDriveMotor.setPower(0.3); //drive backwards to stop from lifting submersible
-                leftFrontDriveMotor.setPower(0.3);
-                rightBackDriveMotor.setPower(0.3);
-                leftBackDriveMotor.setPower(0.3);
-                sleep(200);
-                armMotor.setPower(-1);
-                sleep(2000);
-                rightFrontDriveMotor.setPower(0); //drive backwards to stop from lifting submersible
-                leftFrontDriveMotor.setPower(0);
-                rightBackDriveMotor.setPower(0);
-                leftBackDriveMotor.setPower(0);
+//            else if (gamepad1.dpad_up){
+//                blockInp = true;
+//                VSlide.setPower(.7);
+//                sleep(350);
+//                VSlide.setPower(0);
+//                encoderDrive(0.3,25,MOVEMENT_DIRECTION.FORWARD); //push into wall to center, maybe
+//                encoderDrive(0.3,5,MOVEMENT_DIRECTION.REVERSE);
+//                VSlide.setPower(.7);
+//                sleep(700); // changed from 800
+//                encoderDrive(0.3, 3.25, MOVEMENT_DIRECTION.FORWARD);
+//                VSlide.setPower(-.9);
+//                sleep(900);
+//                VSlide.setPower(0);
+//                blockInp = false;
+//            }
+//
+//            else if (gamepad1.dpad_down){
+//                blockInp = true;
+//                encoderDrive(0.3,15,MOVEMENT_DIRECTION.FORWARD); //push into wall to center, maybe need to raise vslide
+//                encoderDrive(0.3,12,MOVEMENT_DIRECTION.REVERSE); //get ready to swing arm
+//                armMotor.setPower(0.8);//arm lowered
+//                sleep(2100);
+//                armMotor.setPower(-0.5);//raise it up to the bar as we drive forward
+////                sleep(250); //might need to change timing, lets arm clear the lower bar
+//                encoderDrive(0.4,10,MOVEMENT_DIRECTION.FORWARD);
+//                armMotor.setPower(0);
+//                rightFrontDriveMotor.setPower(0.3); //drive backwards to stop from lifting submersible
+//                leftFrontDriveMotor.setPower(0.3);
+//                rightBackDriveMotor.setPower(0.3);
+//                leftBackDriveMotor.setPower(0.3);
+//                sleep(200);
+//                armMotor.setPower(-1);
+//                sleep(2000);
+//                rightFrontDriveMotor.setPower(0); //drive backwards to stop from lifting submersible
+//                leftFrontDriveMotor.setPower(0);
+//                rightBackDriveMotor.setPower(0);
+//                leftBackDriveMotor.setPower(0);
 //                while (!gamepad1.dpad_down) {
 //                    armMotor.setPower(-0.5);
 //                }
 //                armMotor.setPower(0);
 //                blockInp=false;
-            }
+//            }
 
             /* Here we set the target position of our arm to match the variable that was selected
             by the driver.
@@ -399,10 +399,10 @@ public class ConceptGoBildaStarterKitRobotTeleop_IntoTheDeep extends RobotLinear
             telemetry.addData("left trigger: ", gamepad1.left_trigger);
             telemetry.addData("Right trigger: ", gamepad1.right_trigger);
             telemetry.addData("------", "");
-            telemetry.addData("RFPower ",RFPower);
-            telemetry.addData("LFPower ",LFPower);
-            telemetry.addData("RBPower ",RBPower);
-            telemetry.addData("LBPower ",LBPower);
+//            telemetry.addData("RFPower ",RFPower);
+//            telemetry.addData("LFPower ",LFPower);
+//            telemetry.addData("RBPower ",RBPower);
+//            telemetry.addData("LBPower ",LBPower);
             telemetry.addData("------", "");
             telemetry.addData("left Stick x: ", gamepad1.left_stick_x);
             telemetry.addData("Right Stick x: ", gamepad1.right_stick_x);
