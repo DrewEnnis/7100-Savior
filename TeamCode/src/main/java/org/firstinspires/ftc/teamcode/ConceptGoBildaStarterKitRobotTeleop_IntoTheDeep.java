@@ -76,9 +76,10 @@ public class ConceptGoBildaStarterKitRobotTeleop_IntoTheDeep extends RobotLinear
 //    public DcMotor  VSlide   = null; //the left arm motor
     public CRServo intake1 = null;
 //    public CRServo intake2 = null;
-//    public DcMotor chicken = null;
+    public DcMotor chicken = null;
     public boolean isSlideUp = false;
     public boolean intakeForward = false;
+    public boolean iWantToHear = true;
 
 
     /* This constant is the number of encoder ticks for each degree of rotation of the arm.
@@ -156,7 +157,7 @@ public class ConceptGoBildaStarterKitRobotTeleop_IntoTheDeep extends RobotLinear
         VSlide = hardwareMap.get(DcMotor.class, "vslide");
         intake1 = hardwareMap.get(CRServo.class, "intake");
 //        intake2 = hardwareMap.get(CRServo.class, "intake_2");
-//        chicken = hardwareMap.get(DcMotor.class, "chicken");
+        chicken = hardwareMap.get(DcMotor.class, "chicken");
 
         leftFrontDriveMotor.setDirection(DcMotor.Direction.FORWARD);
         rightFrontDriveMotor.setDirection(DcMotor.Direction.REVERSE);
@@ -231,10 +232,10 @@ public class ConceptGoBildaStarterKitRobotTeleop_IntoTheDeep extends RobotLinear
 //            LFPower = rotate + (forward + strafe);
 //            RBPower = rotate + (forward - strafe);
 //            LBPower = rotate - (forward + strafe);
-                rightFrontDriveMotor.setPower(RFPower/2);
-                leftFrontDriveMotor.setPower(LFPower/2);
-                rightBackDriveMotor.setPower(RBPower/2);
-                leftBackDriveMotor.setPower(LBPower/2);
+                rightFrontDriveMotor.setPower(RFPower/6);
+                leftFrontDriveMotor.setPower(LFPower/6);
+                rightBackDriveMotor.setPower(RBPower/6);
+                leftBackDriveMotor.setPower(LBPower/6);
 
 //                VSlide.setPower(gamepad1.left_trigger-gamepad1.right_trigger);
 
@@ -254,28 +255,47 @@ public class ConceptGoBildaStarterKitRobotTeleop_IntoTheDeep extends RobotLinear
 //                }
 
                 if (gamepad1.b) {
-                    if (intakeForward) {
+                    if (intakeForward) {//code to open
                         intake1.setPower(-0.8);
+                        stopDrive();
                         sleep(800);
                         intake1.setPower(0);
                         intakeForward = false;
-                    } else {
+                    } else {//code to close
                         intake1.setPower(0.8);
+                        stopDrive();
                         sleep(800);
-                        intake1.setPower(0.4);
+                        intake1.setPower(0.2);
                         intakeForward = true;
                     }
                 } else if (gamepad1.x) {
-                    if (isSlideUp) {
+                    if (isSlideUp) { //code to go down
                         VSlide.setPower(-0.3);
-                        sleep(2200);
+                        stopDrive();
+                        sleep(2500);
                         VSlide.setPower(0);
                         isSlideUp = false;
-                    } else {
+                    } else { //code to go up
                         VSlide.setPower(0.5);
+                        stopDrive();
                         sleep(2000);
                         VSlide.setPower(0);
                         isSlideUp = true;
+                    }
+                } else if (gamepad1.y && !iWantToHear) {
+                    chicken.setPower(-0.5);
+                    sleep(100);
+                    chicken.setPower(0.5);
+                    sleep(100);
+                    chicken.setPower(0);
+                }
+
+
+                if (gamepad1.back) {
+                    if (gamepad1.dpad_down) {
+                        iWantToHear = true;
+                    } else if (gamepad1.dpad_up) {
+                        iWantToHear = false;
                     }
                 }
 
@@ -432,5 +452,11 @@ public class ConceptGoBildaStarterKitRobotTeleop_IntoTheDeep extends RobotLinear
             telemetry.update();
 
         }
+    }
+    public void stopDrive() {
+        rightFrontDriveMotor.setPower(0);
+        leftFrontDriveMotor.setPower(0);
+        rightBackDriveMotor.setPower(0);
+        leftBackDriveMotor.setPower(0);
     }
 }
