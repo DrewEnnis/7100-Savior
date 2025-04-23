@@ -77,6 +77,8 @@ public class ConceptGoBildaStarterKitRobotTeleop_IntoTheDeep extends RobotLinear
     public CRServo intake1 = null;
 //    public CRServo intake2 = null;
 //    public DcMotor chicken = null;
+    public boolean isSlideUp = false;
+    public boolean intakeForward = false;
 
 
     /* This constant is the number of encoder ticks for each degree of rotation of the arm.
@@ -229,34 +231,53 @@ public class ConceptGoBildaStarterKitRobotTeleop_IntoTheDeep extends RobotLinear
 //            LFPower = rotate + (forward + strafe);
 //            RBPower = rotate + (forward - strafe);
 //            LBPower = rotate - (forward + strafe);
-            if (!blockInp) {
                 rightFrontDriveMotor.setPower(RFPower/2);
                 leftFrontDriveMotor.setPower(LFPower/2);
                 rightBackDriveMotor.setPower(RBPower/2);
                 leftBackDriveMotor.setPower(LBPower/2);
 
-                VSlide.setPower(gamepad1.left_trigger-gamepad1.right_trigger);
+//                VSlide.setPower(gamepad1.left_trigger-gamepad1.right_trigger);
 
-//                if (gamepad1.left_bumper && !gamepad1.right_bumper) {
-//                    VSlide.setPower(1);
-//                } else if (gamepad1.right_bumper && !gamepad1.left_bumper) {
+//                if (gamepad1.left_bumper) {
+//                    if (VSlide.getCurrentPosition() >= 100) {
+//                        VSlide.setPower(1);
+//                        sleep(800);
+//                        VSlide.setPower(0);
+//                    }
+//
+//                } else if (gamepad1.right_bumper) {
+//                    if (VSlide.getCurrentPosition() <= 100) {
 //                    VSlide.setPower(-1);
-//                } else {
+//                    sleep(800);
 //                    VSlide.setPower(0);
+//                    }
 //                }
 
                 if (gamepad1.b) {
-                    intake1.setPower(-1);
-//                    intake2.setPower(-1);
-                } else if (gamepad1.a) {
-                    intake1.setPower(1);
-//                    intake2.setPower(1);
-                } else {
-                    intake1.setPower(0);
-//                    intake2.setPower(0);
+                    if (intakeForward) {
+                        intake1.setPower(-0.8);
+                        sleep(800);
+                        intake1.setPower(0);
+                        intakeForward = false;
+                    } else {
+                        intake1.setPower(0.8);
+                        sleep(800);
+                        intake1.setPower(0.4);
+                        intakeForward = true;
+                    }
+                } else if (gamepad1.x) {
+                    if (isSlideUp) {
+                        VSlide.setPower(-0.3);
+                        sleep(2200);
+                        VSlide.setPower(0);
+                        isSlideUp = false;
+                    } else {
+                        VSlide.setPower(0.5);
+                        sleep(2000);
+                        VSlide.setPower(0);
+                        isSlideUp = true;
+                    }
                 }
-            }
-
 
 
             /* Here we handle the three buttons that have direct control of the intake speed.
