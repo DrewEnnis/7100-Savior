@@ -232,10 +232,10 @@ public class ConceptGoBildaStarterKitRobotTeleop_IntoTheDeep extends RobotLinear
 //            LFPower = rotate + (forward + strafe);
 //            RBPower = rotate + (forward - strafe);
 //            LBPower = rotate - (forward + strafe);
-                rightFrontDriveMotor.setPower(RFPower/6);
-                leftFrontDriveMotor.setPower(LFPower/6);
-                rightBackDriveMotor.setPower(RBPower/6);
-                leftBackDriveMotor.setPower(LBPower/6);
+                rightFrontDriveMotor.setPower(RFPower/3.5);
+                leftFrontDriveMotor.setPower(LFPower/3.5);
+                rightBackDriveMotor.setPower(RBPower/3.5);
+                leftBackDriveMotor.setPower(LBPower/3.5);
 
 //                VSlide.setPower(gamepad1.left_trigger-gamepad1.right_trigger);
 
@@ -276,10 +276,10 @@ public class ConceptGoBildaStarterKitRobotTeleop_IntoTheDeep extends RobotLinear
                         VSlide.setPower(0);
                         isSlideUp = false;
                     } else { //code to go up
-                        VSlide.setPower(0.5);
+                        VSlide.setPower(0.6);
                         stopDrive();
                         sleep(2000);
-                        VSlide.setPower(0);
+                        VSlide.setPower(0.1);
                         isSlideUp = true;
                     }
                 } else if (gamepad1.y && !iWantToHear) {
